@@ -44,8 +44,10 @@ public class VentanaPricipal extends JFrame
 		menuBar.add(mnPeliculas);
 		
 		mnItemAgregar = new JMenuItem("Agregar");
-		mnItemAgregar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		mnItemAgregar.addActionListener(new ActionListener() 
+		{
+			public void actionPerformed(ActionEvent e) 
+			{
 				PanelAgregarPeliculas panel = new PanelAgregarPeliculas();
 				panel.setListModel(dlModel);
 				contentPane.removeAll();
@@ -58,7 +60,6 @@ public class VentanaPricipal extends JFrame
 		
 		mnItemListar = new JMenuItem("Listar");
 		mnPeliculas.add(mnItemListar);
-		
 	}
 	
 }

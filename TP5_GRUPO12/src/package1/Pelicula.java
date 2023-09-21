@@ -1,24 +1,27 @@
 package package1;
 
-public class Pelicula {
+public class Pelicula 
+{
 	
-	private final int id;
+	private int ID;
 	private String nombre;
 	private Categorias categoria;
-	private static int idAux = 1;
 	
-	public Pelicula() {
-		this.id = idAux;
-		idAux++;
+	
+	public Pelicula()
+	{
+		
 	}
 	
-	public Pelicula(String nombre, Categorias categoria) {
+	public Pelicula(String nombre, Categorias categoria, int iD) 
+	{
 		super();
 		this.nombre = nombre;
 		this.categoria = categoria;
-		this.id = idAux;
-		idAux++;
+		ID = iD;
+	
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -31,12 +34,17 @@ public class Pelicula {
 	public void setCategoria(Categorias categoria) {
 		this.categoria = categoria;
 	}
-	public static int getIdAux() {
-		return idAux;
+	public int getID() {
+		return ID;
+	}
+
+	public void setID(int iD) {
+		ID = iD;
 	}
 	
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "Pelicula "+ nombre + ", categoria " + categoria;
 	}
 	

@@ -1,8 +1,12 @@
 package package1;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import package1.Categorias;
@@ -12,25 +16,33 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 
 @SuppressWarnings("serial")
-public class PanelAgregarPeliculas extends JPanel {
+public class PanelAgregarPeliculas extends JPanel
+{
+	private static int cont = 1;
+	private final int id = cont;
 	
 	private JTextField txtNombre;
 	private JComboBox<Categorias> cboGeneros;
+	private JLabel lblShowID;
+	
 	private DefaultListModel<Pelicula> listModel;
 
-	public PanelAgregarPeliculas() {
+	public PanelAgregarPeliculas() 
+	{
 		dibujar();
+		
+		listModel = new DefaultListModel<Pelicula>();
 	}
 	
-	public void dibujar() {
+	public void dibujar() 
+	{
 		setLayout(null);
-		listModel=new DefaultListModel<>();
 		
 		JLabel lblId = new JLabel("ID:");
 		lblId.setBounds(70, 30, 46, 14);
 		add(lblId);
 		
-		JLabel lblShowID = new JLabel(String.valueOf(Pelicula.getIdAux()));
+		lblShowID = new JLabel(String.valueOf(this.id));
 		lblShowID.setBounds(170, 30, 46, 14);
 		add(lblShowID);
 		
@@ -56,17 +68,50 @@ public class PanelAgregarPeliculas extends JPanel {
 		cboGeneros.addItem(new Categorias(4, "Romantica"));
 		add(cboGeneros);
 		
+		
+		////////////////////////////////////////////////IMPLEMENTO EL ACTIONLISTENER
 		JButton btnAceptar = new JButton("Aceptar");
+		btnAceptar.addActionListener(new eventoBtnAceptar());
 		btnAceptar.setBounds(116, 108, 89, 23);
 		add(btnAceptar);
 	}
 	
-	public DefaultListModel<Pelicula> getListModel() {
-		return listModel;
+	class eventoBtnAceptar implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) 
+		{
+			if(txtNombre.getText().isEmpty())
+			{
+				JOptionPane.showMessageDialog(null, "Por favor ingrese un nombre para la pelicula");
+			}
+			else if(((Categorias)cboGeneros.getSelectedItem()).getId() == 0)
+			{
+				JOptionPane.showMessageDialog(null, "Por favor seleccione un genero");
+			}
+			else
+			{
+				JOptionPane.showMessageDialog(null, txtNombre.getText() + " " + cboGeneros.getSelectedItem());
+				
+				Pelicula pelicula = new Pelicula();
+				
+				pelicula.setID(Integer.parseInt(lblShowID.getText()));
+				pelicula.setNombre(txtNombre.getText());
+				pelicula.setCategoria((Categorias)cboGeneros.getSelectedItem());
+				
+				listModel.addElement(pelicula);
+				
+				cont ++; 
+				
+				txtNombre.setText("");
+				cboGeneros.setSelectedIndex(0);
+				lblShowID.setText(String.valueOf(cont));
+			}			
+		}	
 	}
 
-	public void setListModel(DefaultListModel<Pelicula> listModel) {
-		this.listModel = listModel;
+	public void setListModel(DefaultListModel<Pelicula> dlModel) 
+	{
+		this.listModel = dlModel;
 	}
-	
 }
