@@ -1,11 +1,9 @@
 package package1;
 
-public class Pelicula 
-{
-	
+public class Pelicula {
 	private int ID;
 	private String nombre;
-	private Categorias categoria;
+	private Categoria categoria;
 	
 	
 	public Pelicula()
@@ -13,7 +11,7 @@ public class Pelicula
 		
 	}
 	
-	public Pelicula(String nombre, Categorias categoria, int iD) 
+	public Pelicula(String nombre, Categoria categoria, int iD) 
 	{
 		super();
 		this.nombre = nombre;
@@ -28,10 +26,10 @@ public class Pelicula
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Categorias getCategoria() {
+	public Categoria getCategoria() {
 		return categoria;
 	}
-	public void setCategoria(Categorias categoria) {
+	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
 	public int getID() {
@@ -39,13 +37,13 @@ public class Pelicula
 	}
 
 	public void setID(int iD) {
-		ID = iD;
+		this.ID = iD;
 	}
 	
 	@Override
 	public String toString()
 	{
-		return "Pelicula "+ nombre + ", categoria " + categoria;
-	}
+		return nombre;
 	
+	}
 }

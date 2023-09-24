@@ -1,13 +1,14 @@
 package package1;
 
-public class Categorias {
+public class Categoria {
+
 	private int id;
 	private String nombre;
 	
-	public Categorias() {
+	public Categoria() {
 	}
 	
-	public Categorias(int id, String nombre) {
+	public Categoria(int id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -33,5 +34,4 @@ public class Categorias {
 	public String toString() {
 		return nombre;
 	}
-	
 }
