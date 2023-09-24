@@ -78,14 +78,14 @@ public class VentanaPrincipal extends JFrame {
 				PanelListar panel = new PanelListar();
 				
 				TreeSet<Pelicula> list = new TreeSet<Pelicula>();
-				panel.setListModel(dlModel);
-
 				for(int x=0; x<dlModel.getSize(); x++) {
 					list.add((Pelicula)dlModel.get(x));
 				}
+				dlModel.clear();
 				for (Pelicula x : list) {
-					System.out.println(x.toString());
+					dlModel.addElement(x);
 				}
+				panel.setListModel(dlModel);
 				contentPane.removeAll();
 				contentPane.add(panel);
 				contentPane.repaint();
@@ -100,3 +100,4 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 }
+
